@@ -50,6 +50,12 @@ class Listing(BaseModel):
         description="Minor units (e.g. cents) when priced; null for free",
     )
     metadata: dict[str, Any] = Field(default_factory=dict)
+    sku: str | None = Field(
+        default=None,
+        max_length=64,
+        deprecated=True,
+        description="Optional product SKU; reserved for Phase 2 marketplace integrations.",
+    )
 
     @model_validator(mode="after")
     def price_consistent_with_type(self) -> Listing:
