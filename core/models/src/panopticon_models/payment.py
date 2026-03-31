@@ -33,3 +33,48 @@ class PaymentIntent(BaseModel):
         if isinstance(v, str):
             return v.lower()
         return v
+
+
+class StripeCheckoutSessionCreate(BaseModel):
+    """POST /payments/stripe/checkout-sessions"""
+
+    model_config = model_config_contracts
+
+    mode: Literal["subscription", "payment"] = "payment"
+    price_id: str = Field(..., min_length=1, max_length=255)
+    success_url: str = Field(..., min_length=8, max_length=2048)
+    cancel_url: str = Field(..., min_length=8, max_length=2048)
+
+
+class StripeCheckoutSessionResponse(BaseModel):
+    model_config = model_config_contracts
+
+    stripe_session_id: str = Field(..., max_length=255)
+    billing_record_id: uuid.UUID
+
+
+class CryptoBudgetCreateRequest(BaseModel):
+    """Create an in-app Solana-style budget envelope (pubkeys only; no private keys stored)."""
+
+    model_config = model_config_contracts
+
+    ceiling_lamports: int = Field(..., ge=0, le=2**63 - 1)
+    mint_pubkey: str = Field(..., min_length=32, max_length=64)
+    label: str | None = Field(default=None, max_length=255)
+
+
+class BudgetAllocateRequest(BaseModel):
+    model_config = model_config_contracts
+
+    delta_lamports: int = Field(..., ge=1)
+
+
+class CryptoBudgetResponse(BaseModel):
+    model_config = model_config_contracts
+
+    id: uuid.UUID
+    owner_pubkey: str
+    mint_pubkey: str
+    ceiling_lamports: int
+    allocated_lamports: int
+    label: str | None = None
