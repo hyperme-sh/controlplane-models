@@ -51,6 +51,24 @@ class StripeCheckoutSessionResponse(BaseModel):
 
     stripe_session_id: str = Field(..., max_length=255)
     billing_record_id: uuid.UUID
+    checkout_url: str | None = Field(
+        default=None,
+        max_length=4096,
+        description="Stripe-hosted checkout URL (redirect the browser here).",
+    )
+
+
+class BillingRecordReadResponse(BaseModel):
+    """GET /payments/billing-records/{billing_record_id}"""
+
+    model_config = model_config_contracts
+
+    id: uuid.UUID
+    status: str = Field(..., max_length=64)
+    amount: int | None = Field(default=None, ge=0)
+    currency: str = Field(default="usd", max_length=8)
+    payment_type: str = Field(..., max_length=64)
+    extra_metadata: dict = Field(default_factory=dict)
 
 
 class CryptoBudgetCreateRequest(BaseModel):
