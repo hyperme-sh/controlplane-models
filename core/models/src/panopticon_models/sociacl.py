@@ -102,6 +102,26 @@ class SociACLShareLinkPublic(BaseModel):
     uses_remaining: int | None = None
 
 
+class SociACLShareLinkOwnerView(BaseModel):
+    """Tenant-scoped share metadata. Never includes raw token or token_hash."""
+
+    model_config = model_config_contracts
+
+    share_id: uuid.UUID
+    token_prefix: str = Field(..., max_length=16)
+    mode: SociACLShareMode
+    active: bool
+    resource_kind: SociACLResourceKind
+    resource_descriptor: dict = Field(default_factory=dict)
+    predicate: SociACLPredicate
+    expires_at: str | None = None
+    uses_remaining: int | None = None
+    owner_user_id: uuid.UUID | None = None
+    group_id: uuid.UUID | None = None
+    created_by: str | None = None
+    created_at: str | None = None
+
+
 class SociACLEvaluateRequest(BaseModel):
     token: str = Field(..., min_length=8, max_length=512)
     context: SociACLRequestContext
