@@ -71,6 +71,7 @@ class BillingRecordReadResponse(BaseModel):
     payment_type: str = Field(..., max_length=64)
     extra_metadata: dict = Field(default_factory=dict)
     stripe_session_id: str | None = Field(default=None, max_length=255)
+    stripe_subscription_id: str | None = Field(default=None, max_length=255)
     created_at: datetime | None = None
 
 
