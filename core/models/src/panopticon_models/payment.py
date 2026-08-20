@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import uuid
+from datetime import datetime
 from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
@@ -59,7 +60,7 @@ class StripeCheckoutSessionResponse(BaseModel):
 
 
 class BillingRecordReadResponse(BaseModel):
-    """GET /payments/billing-records/{billing_record_id}"""
+    """GET /payments/billing-records and GET /payments/billing-records/{billing_record_id}"""
 
     model_config = model_config_contracts
 
@@ -69,6 +70,8 @@ class BillingRecordReadResponse(BaseModel):
     currency: str = Field(default="usd", max_length=8)
     payment_type: str = Field(..., max_length=64)
     extra_metadata: dict = Field(default_factory=dict)
+    stripe_session_id: str | None = Field(default=None, max_length=255)
+    created_at: datetime | None = None
 
 
 class CryptoBudgetCreateRequest(BaseModel):
