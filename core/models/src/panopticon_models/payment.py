@@ -72,7 +72,50 @@ class BillingRecordReadResponse(BaseModel):
     extra_metadata: dict = Field(default_factory=dict)
     stripe_session_id: str | None = Field(default=None, max_length=255)
     stripe_subscription_id: str | None = Field(default=None, max_length=255)
+    stripe_invoice_id: str | None = Field(
+        default=None,
+        max_length=255,
+        description="Stripe invoice id when this row came from invoice.paid / invoice.payment_failed.",
+    )
     created_at: datetime | None = None
+
+
+class UsageRecordCreate(BaseModel):
+    """POST /payments/usage-records — internal usage event against a commitment.
+
+    This is not Stripe Billing meter setup. When ``event_name`` and a Stripe
+    customer id are present, payment-service also posts a Billing meter event.
+    Recurring charges still arrive as Stripe ``invoice.paid`` webhooks.
+    """
+
+    model_config = model_config_contracts
+
+    commitment_billing_record_id: uuid.UUID
+    quantity: int = Field(..., ge=1, le=1_000_000_000)
+    event_name: str | None = Field(
+        default=None,
+        max_length=128,
+        description="Optional Stripe Billing meter event name. Omit to record internally only.",
+    )
+    identifier: str | None = Field(
+        default=None,
+        max_length=255,
+        description="Optional idempotency key; same tenant+identifier returns the existing row.",
+    )
+    listing_id: uuid.UUID | None = None
+
+
+class UsageRecordResponse(BaseModel):
+    model_config = model_config_contracts
+
+    billing_record_id: uuid.UUID
+    status: str = Field(..., max_length=64)
+    quantity: int = Field(..., ge=1)
+    commitment_billing_record_id: uuid.UUID
+    identifier: str | None = Field(default=None, max_length=255)
+    stripe_meter_event_posted: bool = False
+    stripe_meter_event_name: str | None = Field(default=None, max_length=128)
+    listing_id: uuid.UUID | None = None
 
 
 class CryptoBudgetCreateRequest(BaseModel):
