@@ -45,6 +45,31 @@ class StripeCheckoutSessionCreate(BaseModel):
     price_id: str = Field(..., min_length=1, max_length=255)
     success_url: str = Field(..., min_length=8, max_length=2048)
     cancel_url: str = Field(..., min_length=8, max_length=2048)
+    metadata: dict[str, str] | None = Field(
+        default=None,
+        description=(
+            "Optional string map copied onto the Stripe session and billing extra_metadata. "
+            "Platform keys tenant_id and checkout_mode win. Do not send secrets."
+        ),
+    )
+
+    @field_validator("metadata")
+    @classmethod
+    def metadata_is_safe(cls, value: dict[str, str] | None) -> dict[str, str] | None:
+        if value is None:
+            return None
+        if len(value) > 16:
+            raise ValueError("metadata has at most 16 keys")
+        blocked = ("secret", "token", "password", "api_key", "private")
+        cleaned: dict[str, str] = {}
+        for key, item in value.items():
+            if len(key) > 40 or len(item) > 500:
+                raise ValueError("metadata key or value is too long")
+            folded = key.lower()
+            if any(part in folded for part in blocked):
+                raise ValueError("metadata must not include secrets")
+            cleaned[key] = item
+        return cleaned
 
 
 class StripeCheckoutSessionResponse(BaseModel):
