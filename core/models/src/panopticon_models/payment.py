@@ -102,6 +102,16 @@ class BillingRecordReadResponse(BaseModel):
         max_length=255,
         description="Stripe invoice id when this row came from invoice.paid / invoice.payment_failed.",
     )
+    net_usdc_atoms: int | None = Field(
+        default=None,
+        ge=0,
+        description="Existing payout / billing net_usdc_atoms. Not a new token field.",
+    )
+    host_pubkey: str | None = Field(
+        default=None,
+        max_length=128,
+        description="Existing host USDC pubkey from billing or payout. Never unregistered.",
+    )
     created_at: datetime | None = None
 
 
