@@ -112,6 +112,11 @@ class BillingRecordReadResponse(BaseModel):
         max_length=128,
         description="Existing host USDC pubkey from billing or payout. Never unregistered.",
     )
+    usdc_conversion: str | None = Field(
+        default=None,
+        max_length=32,
+        description="Stored billing usdc_conversion. unit_map is cents times atoms, not acquired USDC.",
+    )
     created_at: datetime | None = None
 
 
