@@ -45,11 +45,19 @@ class StripeCheckoutSessionCreate(BaseModel):
     price_id: str = Field(..., min_length=1, max_length=255)
     success_url: str = Field(..., min_length=8, max_length=2048)
     cancel_url: str = Field(..., min_length=8, max_length=2048)
+    listing_id: uuid.UUID | None = Field(
+        default=None,
+        description=(
+            "Server-stamped marketplace listing. Client metadata listing_id / "
+            "lease_id are ignored (P0-D C — no retarget)."
+        ),
+    )
     metadata: dict[str, str] | None = Field(
         default=None,
         description=(
             "Optional string map copied onto the Stripe session and billing extra_metadata. "
-            "Platform keys tenant_id and checkout_mode win. Do not send secrets."
+            "Platform keys tenant_id and checkout_mode win. lease_id and listing_id "
+            "from the client are ignored. Do not send secrets."
         ),
     )
 
