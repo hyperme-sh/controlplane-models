@@ -46,6 +46,14 @@ class UsdcLeasePaymentCreate(BaseModel):
     model_config = model_config_contracts
 
     amount_cents: int = Field(..., gt=0, le=99_999_999)
+    listing_id: uuid.UUID | None = Field(
+        default=None,
+        description=(
+            "Marketplace listing this payment buys. The server writes it to "
+            "billing extra_metadata.listing_id, which marketplace purchase "
+            "checks. A listing_id key in metadata is ignored."
+        ),
+    )
     metadata: dict[str, str] | None = Field(
         default=None,
         description=(
