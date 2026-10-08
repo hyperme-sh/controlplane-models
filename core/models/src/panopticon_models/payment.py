@@ -36,28 +36,22 @@ class PaymentIntent(BaseModel):
         return v
 
 
-class StripeCheckoutSessionCreate(BaseModel):
-    """POST /payments/stripe/checkout-sessions"""
+class UsdcLeasePaymentCreate(BaseModel):
+    """POST /payments/usdc/lease-payments
+
+    Opens a pending USDC payment for one lease. The price clears 1:1 from
+    USD cents into USDC atoms. No card is involved.
+    """
 
     model_config = model_config_contracts
 
-    mode: Literal["subscription", "payment"] = "payment"
-    price_id: str = Field(..., min_length=1, max_length=255)
-    success_url: str = Field(..., min_length=8, max_length=2048)
-    cancel_url: str = Field(..., min_length=8, max_length=2048)
-    listing_id: uuid.UUID | None = Field(
-        default=None,
-        description=(
-            "Server-stamped marketplace listing. Client metadata listing_id / "
-            "lease_id are ignored (P0-D C — no retarget)."
-        ),
-    )
+    amount_cents: int = Field(..., gt=0, le=99_999_999)
     metadata: dict[str, str] | None = Field(
         default=None,
         description=(
-            "Optional string map copied onto the Stripe session and billing extra_metadata. "
-            "Platform keys tenant_id and checkout_mode win. lease_id and listing_id "
-            "from the client are ignored. Do not send secrets."
+            "Optional string map copied onto billing extra_metadata. "
+            "Platform keys tenant_id and payment_rail win. lease_id and "
+            "listing_id from a browser client are ignored. Do not send secrets."
         ),
     )
 
@@ -80,15 +74,28 @@ class StripeCheckoutSessionCreate(BaseModel):
         return cleaned
 
 
-class StripeCheckoutSessionResponse(BaseModel):
+UsdcLeasePaymentStatus = Literal["pending", "succeeded", "refunded", "failed"]
+
+
+class UsdcLeasePaymentResponse(BaseModel):
+    """A USDC lease payment. ``amount_atoms`` has 6 decimals."""
+
     model_config = model_config_contracts
 
-    stripe_session_id: str = Field(..., max_length=255)
     billing_record_id: uuid.UUID
-    checkout_url: str | None = Field(
+    status: str = Field(..., max_length=64)
+    amount_cents: int = Field(..., ge=0)
+    amount_atoms: int = Field(..., ge=0)
+    chain_id: int | None = Field(
         default=None,
-        max_length=4096,
-        description="Stripe-hosted checkout URL (redirect the browser here).",
+        description="Base chain id from deployment config, when set.",
+    )
+    test_credit_available: bool = Field(
+        default=False,
+        description=(
+            "True only on a Base Sepolia deployment with Stripe in test mode. "
+            "The renter may then settle this payment from a test-network credit."
+        ),
     )
 
 
