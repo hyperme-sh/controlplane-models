@@ -93,7 +93,12 @@ class UsdcLeasePaymentResponse(BaseModel):
     billing_record_id: uuid.UUID
     status: str = Field(..., max_length=64)
     amount_cents: int = Field(..., ge=0)
-    amount_atoms: int = Field(..., ge=0)
+    amount_atoms: int = Field(
+        ...,
+        ge=0,
+        description="USDC atoms (6 decimals). 64-bit: large payments exceed 32 bits.",
+        json_schema_extra={"format": "int64"},
+    )
     chain_id: int | None = Field(
         default=None,
         description="Base chain id from deployment config, when set.",
