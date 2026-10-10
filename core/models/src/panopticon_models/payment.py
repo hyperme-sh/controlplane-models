@@ -8,6 +8,9 @@ from pydantic import BaseModel, Field, field_validator
 
 from panopticon_models._config import model_config_contracts
 
+MIN_STABLECOIN_CHARGE_CENTS = 50
+MAX_STABLECOIN_CHARGE_CENTS = 1_000_000
+
 PaymentIntentStatus = Literal[
     "requires_payment_method",
     "processing",
@@ -45,7 +48,27 @@ class UsdcLeasePaymentCreate(BaseModel):
 
     model_config = model_config_contracts
 
-    amount_cents: int = Field(..., gt=0, le=99_999_999)
+    amount_cents: int = Field(
+        ...,
+        ge=MIN_STABLECOIN_CHARGE_CENTS,
+        le=MAX_STABLECOIN_CHARGE_CENTS,
+        description="Total USD cents: $0.50–$10,000.00 inclusive",
+    )
+
+    @field_validator("amount_cents", mode="before")
+    @classmethod
+    def validate_charge_range(cls, value):
+        if isinstance(value, int) and not isinstance(value, bool):
+            if value < MIN_STABLECOIN_CHARGE_CENTS:
+                raise ValueError(
+                    "Lease total is below the $0.50 minimum; allowed range is $0.50–$10,000.00 USD"
+                )
+            if value > MAX_STABLECOIN_CHARGE_CENTS:
+                raise ValueError(
+                    "Lease total exceeds the $10,000.00 maximum; allowed range is $0.50–$10,000.00 USD"
+                )
+        return value
+
     listing_id: uuid.UUID | None = Field(
         default=None,
         description=(
