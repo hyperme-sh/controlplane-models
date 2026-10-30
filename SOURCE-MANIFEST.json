@@ -1,0 +1,84 @@
+{
+  "source_revision": "2d92d13f38d491c298631b9b9296979c1fbadd19",
+  "runtime_changes": [
+    {
+      "path": "src/panopticon_models/grpc/pb2_convert.py",
+      "original_sha256": "92e8837eedad569ba0295f24d2439be8d37ca0d61ba4de6680b1e1f198676271",
+      "reason": "Replace monorepo ancestor-path search with an explicit installed controlplane-proto dependency; wire/domain conversions unchanged."
+    }
+  ],
+  "files": {
+    "src/panopticon_models/http_common.py": {
+      "original_path": "core/models/src/panopticon_models/http_common.py",
+      "sha256": "73f33a9bc34e5a2caa9a85d859c89fd87e34386fbb76c671e2b0ac0f9c77da3d"
+    },
+    "src/panopticon_models/payment.py": {
+      "original_path": "core/models/src/panopticon_models/payment.py",
+      "sha256": "a12b828ec82775696d249fa13c64c6555af1cfc9f7ce0c8d6dd24ad4a69e422e"
+    },
+    "src/panopticon_models/crypto.py": {
+      "original_path": "core/models/src/panopticon_models/crypto.py",
+      "sha256": "709dbb6631ade4d378fe43d4d898fbac872fbacaf7e4f93c0a8fa16b6149e4e5"
+    },
+    "src/panopticon_models/acl.py": {
+      "original_path": "core/models/src/panopticon_models/acl.py",
+      "sha256": "258632a05f78c90104f0cea8eb36d1e8f67eaa84ac6501fb1007ea278bd93a25"
+    },
+    "src/panopticon_models/organization.py": {
+      "original_path": "core/models/src/panopticon_models/organization.py",
+      "sha256": "8fb82f4e49f2bc649ddb1e742cfe76b6d1ef4e73b184b09578fbcf80447be5c2"
+    },
+    "src/panopticon_models/user.py": {
+      "original_path": "core/models/src/panopticon_models/user.py",
+      "sha256": "3884a13277cc56c4709448956fe442c38c5c4b4fd683fab5d74c3c5acae09d6d"
+    },
+    "src/panopticon_models/marketplace.py": {
+      "original_path": "core/models/src/panopticon_models/marketplace.py",
+      "sha256": "5170c57178df3cd3cf8f00cadf85baa4cee4b74aec20e81bbc9fde96c65d0729"
+    },
+    "src/panopticon_models/group.py": {
+      "original_path": "core/models/src/panopticon_models/group.py",
+      "sha256": "90bcfe8d5f7d7e8a874612efa17ea48c8728fb9f78181b42d01df54a43d0a229"
+    },
+    "src/panopticon_models/tenant.py": {
+      "original_path": "core/models/src/panopticon_models/tenant.py",
+      "sha256": "fb941fccca212c3170fa019ff38e96738ec5d789440bd4f8913829c46df62eb6"
+    },
+    "src/panopticon_models/sociacl.py": {
+      "original_path": "core/models/src/panopticon_models/sociacl.py",
+      "sha256": "bfbb2ffcfa0269d1a597d55475a1857b24cfc89c659f18ab82e72c52190ed959"
+    },
+    "src/panopticon_models/_config.py": {
+      "original_path": "core/models/src/panopticon_models/_config.py",
+      "sha256": "67979b5cc355999bf204903095f5ef4503314aff91cc985b74b25652f5885071"
+    },
+    "src/panopticon_models/ai_metering.py": {
+      "original_path": "core/models/src/panopticon_models/ai_metering.py",
+      "sha256": "0712eae1aa60edc39916bd9c47e2d26575520f817c94fe8356cdf758e9f6a29a"
+    },
+    "src/panopticon_models/__init__.py": {
+      "original_path": "core/models/src/panopticon_models/__init__.py",
+      "sha256": "49f96fbf9431fa2c7f51f8bd70dbc0e41586654e6414727f0b33ba3278d9935c"
+    },
+    "src/panopticon_models/grpc/wire.py": {
+      "original_path": "core/models/src/panopticon_models/grpc/wire.py",
+      "sha256": "35392c1b73e14f29a03152ac1f9b979a17616c5df307daa5879e554ad208626b"
+    },
+    "src/panopticon_models/grpc/pb2_convert.py": {
+      "original_path": "core/models/src/panopticon_models/grpc/pb2_convert.py",
+      "sha256": "d559638a327161c5f4618bf9ec2b5b2cbb9339afc3f7fdb3e697ab70a197995d"
+    },
+    "src/panopticon_models/grpc/contract_service.py": {
+      "original_path": "core/models/src/panopticon_models/grpc/contract_service.py",
+      "sha256": "80b2c5c4a8ad0b7c567e3c5ae7607ceb0a782cb2bb03afe3c1e1a1d4af04d9d6"
+    },
+    "src/panopticon_models/grpc/mappers.py": {
+      "original_path": "core/models/src/panopticon_models/grpc/mappers.py",
+      "sha256": "5882f70724e951d99ac2707abb3b17ae7a1c9459b9c39b81cec2321e180a27d3"
+    },
+    "src/panopticon_models/grpc/__init__.py": {
+      "original_path": "core/models/src/panopticon_models/grpc/__init__.py",
+      "sha256": "e49a93b8592995bc4e970aa73c9db3692e4039e6b6ea322cfd2bf54a0723d1ef"
+    }
+  }
+}

@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 import json
-import sys
-from pathlib import Path
+import importlib
 
 from google.protobuf.timestamp_pb2 import Timestamp
 
@@ -13,27 +12,9 @@ from panopticon_models.marketplace import Listing
 from panopticon_models.user import SharedUser
 
 
-def _proto_stubs_dir() -> Path:
-    """Resolve ``proto/panopticon/v1`` containing ``contractecho_pb2.py`` (walks up from this file)."""
-    p = Path(__file__).resolve().parent
-    for _ in range(10):
-        cand = p / "proto" / "panopticon" / "v1" / "contractecho_pb2.py"
-        if cand.is_file():
-            return cand.parent
-        p = p.parent
-    raise RuntimeError(
-        "contractecho_pb2.py not found; run: python scripts/gen_proto.py from repo root"
-    )
-
-
 def _pb2_mod():
-    """Load generated module from ``proto/panopticon/v1``."""
-    d = _proto_stubs_dir()
-    if str(d) not in sys.path:
-        sys.path.insert(0, str(d))
-    import contractecho_pb2 as m
-
-    return m
+    """Load the explicitly installed protocol component, without filesystem search."""
+    return importlib.import_module("contractecho_pb2")
 
 
 def shared_user_to_pb2(u: SharedUser):
