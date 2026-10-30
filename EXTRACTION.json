@@ -1,0 +1,16 @@
+{
+  "repository": "FyberLabs/controlplane-models",
+  "source_repository": "FyberLabs/panopticon",
+  "source_revision": "2d92d13f38d491c298631b9b9296979c1fbadd19",
+  "selected_paths": [
+    "core/models"
+  ],
+  "filtered_history_head": "4303b4a2b1e57129d8e00d96140d2cb58e91425d",
+  "retained_files": 19,
+  "inventory_sha256": "e1e87db7aed28f4a4234b7bdf1604bf8f98305a0c04f6e624155cc4c3b3f0110",
+  "blob_and_mode_equality_verified": true,
+  "rename_predecessors_followed": false,
+  "standalone_release_verified": false,
+  "cutover_verified": false,
+  "actions_enabled": false
+}
