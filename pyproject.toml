@@ -14,7 +14,7 @@ dependencies = [
 
 [project.optional-dependencies]
 grpc = [
-    "controlplane-proto>=0.1.0",
+    "controlplane-proto @ git+ssh://git@github.com/FyberLabs/controlplane-proto.git@718c5f4dd552446204ac4a0af1c106ae0cbbb8f8",
     "mcp<2",
     "grpcio>=1.80.0",
     "grpcio-tools>=1.80.0",
@@ -35,5 +35,5 @@ dev = ["pytest>=8.4.0"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
-[tool.uv.sources]
-controlplane-proto = { git = "ssh://git@github.com/FyberLabs/controlplane-proto.git", rev = "718c5f4dd552446204ac4a0af1c106ae0cbbb8f8" }
+[tool.hatch.metadata]
+allow-direct-references = true
