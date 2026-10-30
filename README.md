@@ -19,7 +19,7 @@ not reset or stand in for public-contract versions.
 ## Optional protocol integration
 
 `uv sync --frozen --extra grpc` installs the explicit protocol dependency pinned
-to `controlplane-proto` commit `4a91308fcd2a5589d1ab9f82fd7917f6afb655d4`.
+to `controlplane-proto` commit `718c5f4dd552446204ac4a0af1c106ae0cbbb8f8`.
 The mapper imports the installed generated module rather than walking parent
 folders for a monorepo `proto/` directory. All conversion/wire bytes outside that
 loader remain unchanged; the one runtime packaging change is recorded separately.

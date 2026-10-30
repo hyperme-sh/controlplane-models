@@ -36,4 +36,4 @@ dev = ["pytest>=8.4.0"]
 testpaths = ["tests"]
 
 [tool.uv.sources]
-controlplane-proto = { git = "ssh://git@github.com/FyberLabs/controlplane-proto.git", rev = "4a91308fcd2a5589d1ab9f82fd7917f6afb655d4" }
+controlplane-proto = { git = "ssh://git@github.com/FyberLabs/controlplane-proto.git", rev = "718c5f4dd552446204ac4a0af1c106ae0cbbb8f8" }
