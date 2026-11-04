@@ -197,8 +197,8 @@ wheels = [
 
 [[package]]
 name = "controlplane-proto"
-version = "0.1.0"
-source = { git = "ssh://git@github.com/hyperme-sh/controlplane-proto.git?rev=718c5f4dd552446204ac4a0af1c106ae0cbbb8f8#718c5f4dd552446204ac4a0af1c106ae0cbbb8f8" }
+version = "0.2.0"
+source = { git = "https://github.com/hyperme-sh/controlplane-proto.git?rev=4ce51c3492d1f7d7c85fb8322f7eefda059209f2#4ce51c3492d1f7d7c85fb8322f7eefda059209f2" }
 dependencies = [
     { name = "grpcio" },
     { name = "protobuf" },
@@ -642,48 +642,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/7d/fa/3944b40b07da9ce89
 wheels = [
     { url = "https://files.pythonhosted.org/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl", hash = "sha256:d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c", size = 129956, upload-time = "2026-08-04T18:15:27.159Z" },
 ]
-
-[[package]]
-name = "panopticon-models"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "pydantic", extra = ["email"] },
-    { name = "solana" },
-]
-
-[package.optional-dependencies]
-grpc = [
-    { name = "controlplane-proto" },
-    { name = "grpcio" },
-    { name = "grpcio-tools" },
-    { name = "mcp" },
-    { name = "protobuf" },
-    { name = "pydantic-rpc" },
-    { name = "pydantic-rpc-cli" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "pytest" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "controlplane-proto", marker = "extra == 'grpc'", git = "ssh://git@github.com/hyperme-sh/controlplane-proto.git?rev=718c5f4dd552446204ac4a0af1c106ae0cbbb8f8" },
-    { name = "grpcio", marker = "extra == 'grpc'", specifier = ">=1.80.0" },
-    { name = "grpcio-tools", marker = "extra == 'grpc'", specifier = ">=1.80.0" },
-    { name = "mcp", marker = "extra == 'grpc'", specifier = "<2" },
-    { name = "protobuf", marker = "extra == 'grpc'", specifier = ">=6.33.6" },
-    { name = "pydantic", extras = ["email"], specifier = ">=2.12.0" },
-    { name = "pydantic-rpc", marker = "extra == 'grpc'", specifier = ">=0.15.2" },
-    { name = "pydantic-rpc-cli", marker = "extra == 'grpc'", specifier = ">=0.15.2" },
-    { name = "solana", specifier = ">=0.36.0" },
-]
-provides-extras = ["grpc"]
-
-[package.metadata.requires-dev]
-dev = [{ name = "pytest", specifier = ">=8.4.0" }]
 
 [[package]]
 name = "pluggy"
@@ -1187,6 +1145,48 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/46/a1/68e47cef35fb1c8433fbdc9df802382ee8c44ebe35d9d6cb2995b2077453/solders-0.29.0-cp310-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:09e80c545c728f434f627d3b4714675a0f654c4d387f3339d54f7d09d59f3f1c", size = 12504249, upload-time = "2026-08-13T17:26:05.373Z" },
     { url = "https://files.pythonhosted.org/packages/dd/9c/3db8a38335ff201ea09c2a6fe2f1788ebe4cc5651f97c4953a2011bebdf7/solders-0.29.0-cp310-abi3-win_amd64.whl", hash = "sha256:f36db7b43088866081b5d37ff62668551e30dd136b9ee58a5fb524fcd828082d", size = 11040172, upload-time = "2026-08-13T17:26:07.961Z" },
 ]
+
+[[package]]
+name = "spanopticon-models"
+version = "0.2.0"
+source = { editable = "." }
+dependencies = [
+    { name = "pydantic", extra = ["email"] },
+    { name = "solana" },
+]
+
+[package.optional-dependencies]
+grpc = [
+    { name = "controlplane-proto" },
+    { name = "grpcio" },
+    { name = "grpcio-tools" },
+    { name = "mcp" },
+    { name = "protobuf" },
+    { name = "pydantic-rpc" },
+    { name = "pydantic-rpc-cli" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "controlplane-proto", marker = "extra == 'grpc'", git = "https://github.com/hyperme-sh/controlplane-proto.git?rev=4ce51c3492d1f7d7c85fb8322f7eefda059209f2" },
+    { name = "grpcio", marker = "extra == 'grpc'", specifier = ">=1.80.0" },
+    { name = "grpcio-tools", marker = "extra == 'grpc'", specifier = ">=1.80.0" },
+    { name = "mcp", marker = "extra == 'grpc'", specifier = "<2" },
+    { name = "protobuf", marker = "extra == 'grpc'", specifier = ">=6.33.6" },
+    { name = "pydantic", extras = ["email"], specifier = ">=2.12.0" },
+    { name = "pydantic-rpc", marker = "extra == 'grpc'", specifier = ">=0.15.2" },
+    { name = "pydantic-rpc-cli", marker = "extra == 'grpc'", specifier = ">=0.15.2" },
+    { name = "solana", specifier = ">=0.36.0" },
+]
+provides-extras = ["grpc"]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pytest", specifier = ">=8.4.0" }]
 
 [[package]]
 name = "sse-starlette"

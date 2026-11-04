@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "panopticon-models"
-version = "0.1.0"
+name = "spanopticon-models"
+version = "0.2.0"
 requires-python = ">=3.13"
 description = "Shared Pydantic v2 domain contracts (cross-service / events / ACL)"
 dependencies = [
@@ -14,7 +14,7 @@ dependencies = [
 
 [project.optional-dependencies]
 grpc = [
-    "controlplane-proto @ git+ssh://git@github.com/hyperme-sh/controlplane-proto.git@718c5f4dd552446204ac4a0af1c106ae0cbbb8f8",
+    "controlplane-proto @ git+https://github.com/hyperme-sh/controlplane-proto.git@4ce51c3492d1f7d7c85fb8322f7eefda059209f2",
     "mcp<2",
     "grpcio>=1.80.0",
     "grpcio-tools>=1.80.0",
@@ -24,10 +24,10 @@ grpc = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/panopticon_models"]
+packages = ["src/spanopticon_models"]
 
 [tool.hatch.build.targets.sdist]
-include = ["src/panopticon_models"]
+include = ["src/spanopticon_models"]
 
 [dependency-groups]
 dev = ["pytest>=8.4.0"]

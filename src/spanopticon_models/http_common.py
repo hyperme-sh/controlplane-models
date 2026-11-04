@@ -6,7 +6,7 @@ from typing import Generic, TypeVar
 
 from pydantic import BaseModel, Field
 
-from panopticon_models._config import model_config_contracts
+from spanopticon_models._config import model_config_contracts
 
 T = TypeVar("T")
 

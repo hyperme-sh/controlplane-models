@@ -6,8 +6,8 @@ import pytest
 pytest.importorskip('contractecho_pb2', reason='Install the grpc extra for protocol integration checks')
 
 def test_shared_user_pb2_roundtrip() -> None:
-    from panopticon_models.grpc.pb2_convert import shared_user_from_pb2, shared_user_to_pb2
-    from panopticon_models.user import SharedUser
+    from spanopticon_models.grpc.pb2_convert import shared_user_from_pb2, shared_user_to_pb2
+    from spanopticon_models.user import SharedUser
 
     u = SharedUser(
         id=uuid.uuid4(),
@@ -24,8 +24,8 @@ def test_shared_user_pb2_roundtrip() -> None:
     assert u2.tenant_id is None
 
 def test_listing_pb2_roundtrip() -> None:
-    from panopticon_models.grpc.pb2_convert import listing_from_pb2, listing_to_pb2
-    from panopticon_models.marketplace import Listing, ListingType, PriceType
+    from spanopticon_models.grpc.pb2_convert import listing_from_pb2, listing_to_pb2
+    from spanopticon_models.marketplace import Listing, ListingType, PriceType
 
     lid = uuid.uuid4()
     tid = uuid.uuid4()
@@ -52,8 +52,8 @@ def test_listing_pb2_roundtrip() -> None:
     assert l2.tenant_id == l.tenant_id
 
 def test_token_usage_pb2_roundtrip() -> None:
-    from panopticon_models.ai_metering import TokenUsage
-    from panopticon_models.grpc.pb2_convert import token_usage_from_pb2, token_usage_to_pb2
+    from spanopticon_models.ai_metering import TokenUsage
+    from spanopticon_models.grpc.pb2_convert import token_usage_from_pb2, token_usage_to_pb2
 
     uid = uuid.uuid4()
     tenant_id = uuid.uuid4()
@@ -74,6 +74,6 @@ def test_token_usage_pb2_roundtrip() -> None:
     assert t2.timestamp == t.timestamp
 
 def test_converter_does_not_search_an_ancestor_checkout(monkeypatch):
-    from panopticon_models.grpc import pb2_convert
+    from spanopticon_models.grpc import pb2_convert
     assert not hasattr(pb2_convert, '_proto_stubs_dir')
     assert pb2_convert._pb2_mod().__name__ == 'contractecho_pb2'

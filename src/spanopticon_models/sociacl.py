@@ -8,8 +8,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-from panopticon_models._config import model_config_contracts
-from panopticon_models.acl import PoliticalViewCategory, SociACLAttributes
+from spanopticon_models._config import model_config_contracts
+from spanopticon_models.acl import PoliticalViewCategory, SociACLAttributes
 
 
 class SociACLShareMode(str, Enum):

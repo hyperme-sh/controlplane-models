@@ -1,4 +1,4 @@
-"""Map domain ``panopticon_models`` DTOs to/from gRPC wire messages."""
+"""Map domain ``spanopticon_models`` DTOs to/from gRPC wire messages."""
 
 from __future__ import annotations
 
@@ -7,10 +7,10 @@ import uuid
 from decimal import Decimal
 from typing import Any
 
-from panopticon_models.ai_metering import TokenUsage
-from panopticon_models.marketplace import Listing, ListingType, PriceType
-from panopticon_models.user import SharedUser
-from panopticon_models.grpc.wire import ListingWire, TokenUsageWire, UserWire
+from spanopticon_models.ai_metering import TokenUsage
+from spanopticon_models.marketplace import Listing, ListingType, PriceType
+from spanopticon_models.user import SharedUser
+from spanopticon_models.grpc.wire import ListingWire, TokenUsageWire, UserWire
 
 
 def user_to_wire(u: SharedUser) -> UserWire:

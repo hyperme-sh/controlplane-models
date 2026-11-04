@@ -1,7 +1,7 @@
 # controlplane-models
 
-Shared Pydantic domain contracts distributed as `panopticon-models`. Import them
-from `panopticon_models`; optional gRPC adapters convert the supported models to
+Shared Pydantic domain contracts distributed as `spanopticon-models`. Import them
+from `spanopticon_models`; optional gRPC adapters convert the supported models to
 and from ContractEcho protobuf messages.
 
 ## Development
@@ -25,7 +25,7 @@ uv run --frozen --extra grpc pytest -q
 ```
 
 This needs SSH read access to `hyperme-sh/controlplane-proto`. The distribution
-metadata pins commit `718c5f4dd552446204ac4a0af1c106ae0cbbb8f8`, so ordinary
+metadata pins commit `4ce51c3492d1f7d7c85fb8322f7eefda059209f2`, so ordinary
 wheel installers use the same immutable dependency. The adapters import installed
 protocol modules and do not search parent source directories.
 

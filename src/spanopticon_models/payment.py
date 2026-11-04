@@ -6,7 +6,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
 
-from panopticon_models._config import model_config_contracts
+from spanopticon_models._config import model_config_contracts
 
 MIN_STABLECOIN_CHARGE_CENTS = 50
 MAX_STABLECOIN_CHARGE_CENTS = 1_000_000
