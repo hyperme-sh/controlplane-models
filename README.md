@@ -37,13 +37,13 @@ metadata's full commit SHA, checked out detached, built as a wheel and installed
 without dependency resolution in the isolated wheel-test environment. The base
 mode still needs no private dependency access and may skip optional gRPC tests.
 
-Local gRPC qualification does not establish hosted private-dependency access or
-release acceptance. Automated gRPC checks still need approved read-only access;
-this change neither adds secrets nor enables a privileged runner.
+Local direct-Git qualification does not establish hosted private-dependency access
+or release acceptance. The hosted fixture lane below verifies the published
+protocol artifact without adding secrets or enabling a privileged runner.
 
-CI runs base checks on isolated GitHub-hosted Ubuntu workers with read-only access
-and pinned actions. Automated private gRPC integration needs separately configured
-read-only repository access; deployment credentials must not be used for it.
+CI runs fixture-backed gRPC checks on isolated GitHub-hosted Ubuntu workers with
+read-only access and pinned actions. Direct-Git integration requires existing
+read-only repository access; the hosted fixture lane requires no private credential.
 
 ## Release channels
 
@@ -59,3 +59,21 @@ organization policy may shorten it). Expired evidence fails closed: validate a
 new main revision. The publisher verifies the run, source, workflow and artifact
 digest independently of release metadata. Repository immutable releases must be
 enabled. See the [shared release contract](https://github.com/hyperme-sh/.github/blob/7749591fccd30d46ba9b0adabe82114001c9d0de/actions/release-channel/README.md).
+
+## Hosted protocol consumer qualification
+
+CI runs `bash scripts/check.sh --grpc-fixture`. This checks the real published
+protocol wheel under `tests_artifacts/protocol` against its recorded SHA-256,
+package identity, declared Git revision and lockfile. The manifest records the
+immutable release and successful Actions artifact provenance; the dependency
+revision and publication revision were verified to have identical Git trees.
+The fixture is test-only and is not included in model distributions.
+
+Registry dependencies still come from the frozen lockfile. The private Git
+package is omitted from that installation, then the exact verified wheel is
+installed without dependency resolution. All gRPC consumer tests run in source,
+fresh-wheel and sdist-rebuilt-wheel contexts. A dependency pin change requires
+a matching qualified fixture; a missing or altered fixture fails. No private
+credentials, environments, approval gates or runner-policy changes are needed.
+The existing `--grpc` mode still tests directly from the pinned Git dependency
+when read access is available. Neither mode qualifies live provider deployments.
