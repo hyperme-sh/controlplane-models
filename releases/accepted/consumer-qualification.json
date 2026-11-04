@@ -1,8 +1,11 @@
 {
   "scope": "local installed-wheel consumer qualification, not hosted/provider acceptance",
-  "models_wheel_sha256": "3f027ccb0efed313c9a9f3d3cb6526ba078389506be89a9c309fdbdd51e65064",
-  "protocol_wheel_sha256": "44d526b4cd0a0e12c3dcfc230a48003d2ef16f0fe207e0c0f58b12e908c53ff2",
+  "line": "0.24",
+  "published_wheel_digests": {
+    "proto": "sha256:b5d18cf6b91ee6f34365ed00d9f02f0fb4eb69d69afc9338d4b301a6f88e5336",
+    "models": "sha256:7373dc89d95cccdb67e50e8e83965a6a0417547fe129118fd67194dc3b42e936"
+  },
   "tests_passed": 33,
   "loopback_rpc_tenant_presence_cases": 2,
-  "artifacts": "exact downloaded immutable release wheels; source checkout excluded from interpreter path"
+  "source_checkout_excluded": true
 }
