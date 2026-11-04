@@ -20,14 +20,26 @@ credential; optional gRPC tests are skipped when the extra is absent.
 ## Optional gRPC integration
 
 ```sh
-uv sync --frozen --extra grpc
-uv run --frozen --extra grpc pytest -q
+bash scripts/check.sh --grpc
 ```
 
-This needs SSH read access to `hyperme-sh/controlplane-proto`. The distribution
-metadata pins commit `4ce51c3492d1f7d7c85fb8322f7eefda059209f2`, so ordinary
+This needs Git read access to `hyperme-sh/controlplane-proto` through HTTPS
+credentials or an existing SSH URL rewrite. The distribution
+metadata pins commit `feac8406648a2df7691e46599ad4f9b45f428035`, so ordinary
 wheel installers use the same immutable dependency. The adapters import installed
 protocol modules and do not search parent source directories.
+
+The explicit gRPC mode runs the complete test suite in source, fresh-wheel and
+sdist-rebuilt-wheel environments. It requires the `spanopticon.v1` protocol to
+import successfully before tests; a missing private dependency fails this lane.
+Registry dependencies retain lockfile hashes. The protocol is fetched at the
+metadata's full commit SHA, checked out detached, built as a wheel and installed
+without dependency resolution in the isolated wheel-test environment. The base
+mode still needs no private dependency access and may skip optional gRPC tests.
+
+Local gRPC qualification does not establish hosted private-dependency access or
+release acceptance. Automated gRPC checks still need approved read-only access;
+this change neither adds secrets nor enables a privileged runner.
 
 CI runs base checks on isolated GitHub-hosted Ubuntu workers with read-only access
 and pinned actions. Automated private gRPC integration needs separately configured

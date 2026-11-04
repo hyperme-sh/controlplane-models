@@ -14,7 +14,7 @@ dependencies = [
 
 [project.optional-dependencies]
 grpc = [
-    "controlplane-proto @ git+https://github.com/hyperme-sh/controlplane-proto.git@4ce51c3492d1f7d7c85fb8322f7eefda059209f2",
+    "controlplane-proto @ git+https://github.com/hyperme-sh/controlplane-proto.git@feac8406648a2df7691e46599ad4f9b45f428035",
     "mcp<2",
     "grpcio>=1.80.0",
     "grpcio-tools>=1.80.0",

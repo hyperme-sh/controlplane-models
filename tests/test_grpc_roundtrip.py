@@ -77,3 +77,35 @@ def test_converter_does_not_search_an_ancestor_checkout(monkeypatch):
     from spanopticon_models.grpc import pb2_convert
     assert not hasattr(pb2_convert, '_proto_stubs_dir')
     assert pb2_convert._pb2_mod().__name__ == 'contractecho_pb2'
+
+
+@pytest.mark.parametrize('tenant_id', [None, uuid.UUID('ba18a632-39e1-44f7-9f45-09739a55bcb2')])
+def test_installed_client_server_and_model_roundtrip(tenant_id):
+    """Exercise generated service routing and model presence over real loopback RPC."""
+    from concurrent.futures import ThreadPoolExecutor
+    import grpc
+    import contractecho_pb2 as pb
+    import contractecho_pb2_grpc as rpc
+    from spanopticon_models.grpc.pb2_convert import shared_user_from_pb2, shared_user_to_pb2
+    from spanopticon_models.user import SharedUser
+
+    assert pb.DESCRIPTOR.package == 'spanopticon.v1'
+
+    class Echo(rpc.ContractEchoServicer):
+        def EchoUser(self, request, context):
+            return request
+
+    with ThreadPoolExecutor(max_workers=1) as workers:
+        server = grpc.server(workers)
+        rpc.add_ContractEchoServicer_to_server(Echo(), server)
+        port = server.add_insecure_port('127.0.0.1:0')
+        assert port != 0
+        server.start()
+        try:
+            with grpc.insecure_channel(f'127.0.0.1:{port}') as channel:
+                user = SharedUser(id=uuid.uuid4(), email='rpc@example.com', display_name='RPC', tenant_id=tenant_id)
+                reply = rpc.ContractEchoStub(channel).EchoUser(shared_user_to_pb2(user), timeout=5)
+                assert reply.HasField('tenant_id') is (tenant_id is not None)
+                assert shared_user_from_pb2(reply) == user
+        finally:
+            assert server.stop(grace=0).wait(timeout=5)
