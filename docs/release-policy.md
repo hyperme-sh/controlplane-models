@@ -42,7 +42,7 @@ prerequisites are not. GitHub plan upgrades are not release-adoption prerequisit
 
 ## Artifact-backed model baseline
 
-The prior 0.2 baseline comes from the immutable release recorded in
+The accepted 0.24 baseline comes from the immutable release recorded in
 `releases/accepted/provenance.json`. Its wheel bytes were checked against the
 successful main-run Actions artifact and tested with the published protocol wheel.
 The baseline is component-specific; it does not claim a complete coordinated
