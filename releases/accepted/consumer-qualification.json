@@ -1,0 +1,8 @@
+{
+  "scope": "local installed-wheel consumer qualification, not hosted/provider acceptance",
+  "models_wheel_sha256": "3f027ccb0efed313c9a9f3d3cb6526ba078389506be89a9c309fdbdd51e65064",
+  "protocol_wheel_sha256": "44d526b4cd0a0e12c3dcfc230a48003d2ef16f0fe207e0c0f58b12e908c53ff2",
+  "tests_passed": 33,
+  "loopback_rpc_tenant_presence_cases": 2,
+  "artifacts": "exact downloaded immutable release wheels; source checkout excluded from interpreter path"
+}
