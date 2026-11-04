@@ -9,7 +9,7 @@ from typing import Any
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-from panopticon_models._config import model_config_contracts
+from spanopticon_models._config import model_config_contracts
 
 
 class ListingType(StrEnum):

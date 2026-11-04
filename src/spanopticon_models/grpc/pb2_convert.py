@@ -7,9 +7,9 @@ import importlib
 
 from google.protobuf.timestamp_pb2 import Timestamp
 
-from panopticon_models.ai_metering import TokenUsage
-from panopticon_models.marketplace import Listing
-from panopticon_models.user import SharedUser
+from spanopticon_models.ai_metering import TokenUsage
+from spanopticon_models.marketplace import Listing
+from spanopticon_models.user import SharedUser
 
 
 def _pb2_mod():
@@ -61,7 +61,7 @@ def listing_to_pb2(l: Listing):
 def listing_from_pb2(msg) -> Listing:
     import uuid
 
-    from panopticon_models.marketplace import Listing, ListingType, PriceType
+    from spanopticon_models.marketplace import Listing, ListingType, PriceType
 
     meta: dict = {}
     if msg.metadata_json:
@@ -107,7 +107,7 @@ def token_usage_from_pb2(msg) -> TokenUsage:
     from datetime import timezone
     from decimal import Decimal
 
-    from panopticon_models.ai_metering import TokenUsage
+    from spanopticon_models.ai_metering import TokenUsage
 
     ts = msg.timestamp.ToDatetime()
     if ts.tzinfo is None:

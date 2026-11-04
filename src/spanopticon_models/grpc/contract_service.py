@@ -1,6 +1,6 @@
 """Minimal service class for pydantic-rpc CLI ``generate`` (echo unary RPCs for contract messages)."""
 
-from panopticon_models.grpc.wire import ListingWire, TokenUsageWire, UserWire
+from spanopticon_models.grpc.wire import ListingWire, TokenUsageWire, UserWire
 
 
 class ContractEcho:

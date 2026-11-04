@@ -1,8 +1,8 @@
 import importlib.metadata
 
 def test_grpc_dependency_retains_immutable_protocol_reference():
-    requirements = importlib.metadata.requires('panopticon-models')
+    requirements = importlib.metadata.requires('spanopticon-models')
     protocol = [r for r in requirements if r.lower().startswith('controlplane-proto')]
     assert len(protocol) == 1
-    assert 'git+ssh://git@github.com/hyperme-sh/controlplane-proto.git@718c5f4dd552446204ac4a0af1c106ae0cbbb8f8' in protocol[0]
+    assert 'git+https://github.com/hyperme-sh/controlplane-proto.git@4ce51c3492d1f7d7c85fb8322f7eefda059209f2' in protocol[0]
     assert 'grpc' in protocol[0]

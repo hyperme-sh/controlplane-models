@@ -6,7 +6,7 @@ from pydantic_rpc import Message
 
 
 class UserWire(Message):
-    """Wire shape for :class:`panopticon_models.user.SharedUser`."""
+    """Wire shape for :class:`spanopticon_models.user.SharedUser`."""
 
     id: str
     email: str
@@ -15,7 +15,7 @@ class UserWire(Message):
 
 
 class ListingWire(Message):
-    """Wire shape for :class:`panopticon_models.marketplace.Listing` (metadata as JSON text)."""
+    """Wire shape for :class:`spanopticon_models.marketplace.Listing` (metadata as JSON text)."""
 
     id: str
     tenant_id: str
@@ -30,7 +30,7 @@ class ListingWire(Message):
 
 
 class TokenUsageWire(Message):
-    """Wire shape for :class:`panopticon_models.ai_metering.TokenUsage` (cost as decimal string)."""
+    """Wire shape for :class:`spanopticon_models.ai_metering.TokenUsage` (cost as decimal string)."""
 
     user_id: str
     tenant_id: str
