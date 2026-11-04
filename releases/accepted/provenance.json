@@ -1,0 +1,20 @@
+{
+  "repository": "hyperme-sh/controlplane-models",
+  "revision": "9eeb2a1bb30c6bb948a049eefa737b3fcac42581",
+  "release_id": 434577315,
+  "immutable": true,
+  "tag": "test-9eeb2a1bb30c6bb948a049eefa737b3fcac42581",
+  "run_id": 41933611457,
+  "artifact_id": 13371599400,
+  "assets": {
+    "spanopticon_models-0.2.0-py3-none-any.whl": "sha256:3f027ccb0efed313c9a9f3d3cb6526ba078389506be89a9c309fdbdd51e65064",
+    "spanopticon_models-0.2.0.tar.gz": "sha256:de849adbc952eb2b5827d459ec1cb1e365dce54825b693ac226cb0fe50f4c1a5"
+  },
+  "checks": [
+    "successful same-repository main-push package run",
+    "live Actions artifact digest",
+    "release bytes equal tested bytes",
+    "immutable release and tag revision",
+    "asset digests equal manifest"
+  ]
+}

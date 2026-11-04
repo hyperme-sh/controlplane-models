@@ -197,8 +197,8 @@ wheels = [
 
 [[package]]
 name = "controlplane-proto"
-version = "0.2.0"
-source = { git = "https://github.com/hyperme-sh/controlplane-proto.git?rev=feac8406648a2df7691e46599ad4f9b45f428035#feac8406648a2df7691e46599ad4f9b45f428035" }
+version = "0.24.0"
+source = { git = "https://github.com/hyperme-sh/controlplane-proto.git?rev=51e61210f272eabdc2a3a8d471a50b26257d866a#51e61210f272eabdc2a3a8d471a50b26257d866a" }
 dependencies = [
     { name = "grpcio" },
     { name = "protobuf" },
@@ -1148,7 +1148,7 @@ wheels = [
 
 [[package]]
 name = "spanopticon-models"
-version = "0.2.0"
+version = "0.24.0"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic", extra = ["email"] },
@@ -1173,7 +1173,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "controlplane-proto", marker = "extra == 'grpc'", git = "https://github.com/hyperme-sh/controlplane-proto.git?rev=feac8406648a2df7691e46599ad4f9b45f428035" },
+    { name = "controlplane-proto", marker = "extra == 'grpc'", git = "https://github.com/hyperme-sh/controlplane-proto.git?rev=51e61210f272eabdc2a3a8d471a50b26257d866a" },
     { name = "grpcio", marker = "extra == 'grpc'", specifier = ">=1.80.0" },
     { name = "grpcio-tools", marker = "extra == 'grpc'", specifier = ">=1.80.0" },
     { name = "mcp", marker = "extra == 'grpc'", specifier = "<2" },
