@@ -25,7 +25,7 @@ bash scripts/check.sh --grpc
 
 This needs Git read access to `hyperme-sh/controlplane-proto` through HTTPS
 credentials or an existing SSH URL rewrite. The distribution
-metadata pins commit `feac8406648a2df7691e46599ad4f9b45f428035`, so ordinary
+metadata pins commit `51e61210f272eabdc2a3a8d471a50b26257d866a`, so ordinary
 wheel installers use the same immutable dependency. The adapters import installed
 protocol modules and do not search parent source directories.
 

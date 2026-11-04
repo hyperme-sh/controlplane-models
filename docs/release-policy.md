@@ -39,3 +39,24 @@ approvals, CODEOWNERS approval requirements, or release/deployment approval gate
 unless the user explicitly requests that specific change. This includes production
 releases. Automated tests and advisory reviews are welcome; human approval
 prerequisites are not. GitHub plan upgrades are not release-adoption prerequisites.
+
+## Artifact-backed model baseline
+
+The prior 0.2 baseline comes from the immutable release recorded in
+`releases/accepted/provenance.json`. Its wheel bytes were checked against the
+successful main-run Actions artifact and tested with the published protocol wheel.
+The baseline is component-specific; it does not claim a complete coordinated
+fleet release.
+
+The candidate uses a content-addressed `urn:sha256:` identity for real built
+wheel bytes. Package CI independently builds and tests those bytes and rejects
+a candidate with another version, digest or exported contract. Exports include
+every packaged runtime file, validator and gRPC adapter plus public root names;
+this is intentionally conservative and detects implementation-only changes too.
+Registry dependencies remain locked; the 0.24 protocol dependency is pinned to
+an exact commit. Optional gRPC qualification remains an explicit test lane.
+
+Original and sdist-rebuilt wheels must export identical contracts. Semantic and
+provider qualification remain separate from this byte-level contract check.
+Stable publication requires successful automated admission, without human
+approval gates.
