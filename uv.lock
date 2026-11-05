@@ -198,7 +198,7 @@ wheels = [
 [[package]]
 name = "controlplane-proto"
 version = "0.2.0"
-source = { git = "https://github.com/hyperme-sh/controlplane-proto.git?rev=438e7ad97168bf8bf12b93885ce6f7a889b46cd1#438e7ad97168bf8bf12b93885ce6f7a889b46cd1" }
+source = { git = "https://github.com/hyperme-sh/controlplane-proto.git?rev=db0c3b6b2359ec5a3a3792e0a2ec00d4c9c38db9#db0c3b6b2359ec5a3a3792e0a2ec00d4c9c38db9" }
 dependencies = [
     { name = "grpcio" },
     { name = "protobuf" },
@@ -1173,7 +1173,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "controlplane-proto", marker = "extra == 'grpc'", git = "https://github.com/hyperme-sh/controlplane-proto.git?rev=438e7ad97168bf8bf12b93885ce6f7a889b46cd1" },
+    { name = "controlplane-proto", marker = "extra == 'grpc'", git = "https://github.com/hyperme-sh/controlplane-proto.git?rev=db0c3b6b2359ec5a3a3792e0a2ec00d4c9c38db9" },
     { name = "grpcio", marker = "extra == 'grpc'", specifier = ">=1.80.0" },
     { name = "grpcio-tools", marker = "extra == 'grpc'", specifier = ">=1.80.0" },
     { name = "mcp", marker = "extra == 'grpc'", specifier = "<2" },
