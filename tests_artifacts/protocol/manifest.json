@@ -1,13 +1,15 @@
 {
   "schema_version": 1,
   "distribution": "controlplane-proto",
-  "version": "0.24.0",
-  "dependency_revision": "51e61210f272eabdc2a3a8d471a50b26257d866a",
-  "source_tree": "2ebc03cb0c559d5e26915818a997c9458a3bfe14",
-  "artifact_revision": "5b0016e379e13dfc0cd959b2d62c5cb75c6b71f1",
-  "wheel": "controlplane_proto-0.24.0-py3-none-any.whl",
-  "sha256": "b5d18cf6b91ee6f34365ed00d9f02f0fb4eb69d69afc9338d4b301a6f88e5336",
-  "source_url": "https://github.com/hyperme-sh/controlplane-proto/releases/download/test-5b0016e379e13dfc0cd959b2d62c5cb75c6b71f1/controlplane_proto-0.24.0-py3-none-any.whl",
-  "run_id": 41935862511,
-  "artifact_id": 13372614362
+  "version": "0.2.0",
+  "dependency_revision": "db0c3b6b2359ec5a3a3792e0a2ec00d4c9c38db9",
+  "source_tree": "f79b1f94df07d17f4fb1476da14eb79d1e2461e0",
+  "artifact_revision": "db0c3b6b2359ec5a3a3792e0a2ec00d4c9c38db9",
+  "wheel": "controlplane_proto-0.2.0-py3-none-any.whl",
+  "sha256": "0c133fecea9afa46a906fe7ebd265b182fda6d5192f74adc2427f037ee0c652a",
+  "source_url": "https://github.com/hyperme-sh/controlplane-proto/tree/db0c3b6b2359ec5a3a3792e0a2ec00d4c9c38db9",
+  "delivery": "local_build_from_exact_clean_git_revision",
+  "qualification": "Development fixture, not a published release",
+  "source_archive_sha256": "20bb53a4064a1b137b0843cac00f0b8b8577b1e88ea545b6e19614e52d6463bf",
+  "build_command": "uv build --wheel <exact clean pinned git archive>"
 }

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "spanopticon-models"
-version = "0.24.0"
+version = "0.2.0"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
 requires-python = ">=3.13"
@@ -16,7 +16,7 @@ dependencies = [
 
 [project.optional-dependencies]
 grpc = [
-    "controlplane-proto @ git+https://github.com/hyperme-sh/controlplane-proto.git@51e61210f272eabdc2a3a8d471a50b26257d866a",
+    "controlplane-proto @ git+https://github.com/hyperme-sh/controlplane-proto.git@db0c3b6b2359ec5a3a3792e0a2ec00d4c9c38db9",
     "mcp<2",
     "grpcio>=1.80.0",
     "grpcio-tools>=1.80.0",

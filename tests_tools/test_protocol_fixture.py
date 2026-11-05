@@ -18,7 +18,7 @@ def root(tmp_path):
 
 
 def test_real_fixture_matches_dependency_and_lock(root):
-    assert module.verify(root).name == 'controlplane_proto-0.24.0-py3-none-any.whl'
+    assert module.verify(root).name == 'controlplane_proto-0.2.0-py3-none-any.whl'
 
 
 def test_modified_artifact_fails(root):
