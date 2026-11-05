@@ -122,14 +122,24 @@ uv sync --extra grpc
 ```
 
 ```python
-from spanopticon_models.grpc.pb2_convert import listing_to_pb2, shared_user_to_pb2
+import contractecho_pb2
+from spanopticon_models.grpc.pb2_convert import (
+    listing_from_pb2,
+    listing_to_pb2,
+    shared_user_from_pb2,
+    shared_user_to_pb2,
+)
 
 user_bytes = shared_user_to_pb2(user).SerializeToString()
 listing_bytes = listing_to_pb2(listing).SerializeToString()
+user_again = shared_user_from_pb2(contractecho_pb2.UserWire.FromString(user_bytes))
+listing_again = listing_from_pb2(contractecho_pb2.ListingWire.FromString(listing_bytes))
 ```
 
-`listing_from_pb2` and `shared_user_from_pb2` parse those bytes back.
-`token_usage_to_pb2` / `token_usage_from_pb2` do the same for `TokenUsage`.
+`shared_user_from_pb2` and `listing_from_pb2` take the generated message
+objects. `FromString` turns the serialized bytes into those messages.
+`token_usage_to_pb2` and `token_usage_from_pb2` round-trip `TokenUsage` the
+same way, through `contractecho_pb2.TokenUsageWire.FromString`.
 String-id mappers in `spanopticon_models.grpc` (`user_to_wire`,
 `listing_to_wire`, `token_usage_to_wire`, and the matching `*_from_wire`
 functions) work with the `pydantic-rpc` wire types alone.
