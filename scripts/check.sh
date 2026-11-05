@@ -24,10 +24,10 @@ if (( ${#extras[@]} )); then
   # Unlike the base test lane, the integration lane may not skip a missing proto.
   uv run --frozen "${extras[@]}" "${run_options[@]}" python -c 'import contractecho_pb2; assert contractecho_pb2.DESCRIPTOR.package == "spanopticon.v1"'
 fi
-uv run --frozen "${extras[@]}" "${run_options[@]}" pytest -q
-uv run --frozen "${extras[@]}" "${run_options[@]}" pytest -q tests_tools
 check_tmp=$(mktemp -d)
 trap 'rm -rf "$check_tmp"' EXIT
+uv run --frozen "${extras[@]}" "${run_options[@]}" pytest -q --junitxml="$check_tmp/source.xml"
+uv run --frozen "${extras[@]}" "${run_options[@]}" pytest -q tests_tools
 uv build --no-sources --out-dir "$check_tmp/dist"
 uv run --frozen "${extras[@]}" "${run_options[@]}" python scripts/verify_wheel.py "$check_tmp/dist"
 uv run --frozen "${extras[@]}" "${run_options[@]}" python scripts/export_release_contract.py "$check_tmp"/dist/*.whl --output "$check_tmp/contract"
@@ -67,7 +67,7 @@ PYTHON
 fi
 uv pip install --python "$check_tmp/venv/bin/python" --no-deps "$check_tmp"/dist/*.whl
 cp -R tests "$check_tmp/tests"
-(cd "$check_tmp" && "$check_tmp/venv/bin/python" -I -m pytest -c /dev/null tests -q)
+(cd "$check_tmp" && "$check_tmp/venv/bin/python" -I -m pytest -c /dev/null tests -q --junitxml="$check_tmp/wheel.xml")
 uv run --frozen "${extras[@]}" "${run_options[@]}" python - "$check_tmp" <<'PYTHON'
 import pathlib, sys, tarfile
 root = pathlib.Path(sys.argv[1])
@@ -79,10 +79,19 @@ uv run --frozen "${extras[@]}" "${run_options[@]}" python scripts/verify_wheel.p
 uv run --frozen "${extras[@]}" "${run_options[@]}" python scripts/export_release_contract.py "$check_tmp"/rebuilt/*.whl --output "$check_tmp/rebuilt-contract"
 cmp "$check_tmp/contract/contract.json" "$check_tmp/rebuilt-contract/contract.json"
 uv pip install --python "$check_tmp/venv/bin/python" --no-deps --reinstall "$check_tmp"/rebuilt/*.whl
-(cd "$check_tmp" && "$check_tmp/venv/bin/python" -I -m pytest -c /dev/null tests -q)
+(cd "$check_tmp" && "$check_tmp/venv/bin/python" -I -m pytest -c /dev/null tests -q --junitxml="$check_tmp/sdist.xml")
 
 # Retain the exact validated bytes for the release channel; never rebuild them.
 if [[ -n "${RELEASE_ARTIFACT_DIR:-}" ]]; then
   mkdir -p "$RELEASE_ARTIFACT_DIR"
   cp "$check_tmp/dist"/* "$RELEASE_ARTIFACT_DIR/"
+fi
+
+# Full CI qualification includes the optional protocol fixture and permits no skips.
+if (( ${#extras[@]} )); then
+  python3 scripts/verify-test-results.py "$check_tmp/source.xml" "$check_tmp/wheel.xml" "$check_tmp/sdist.xml"
+fi
+if [[ -n "${TEST_EVIDENCE_DIR:-}" ]]; then
+  mkdir -p "$TEST_EVIDENCE_DIR"
+  cp "$check_tmp"/*.xml "$TEST_EVIDENCE_DIR/"
 fi
