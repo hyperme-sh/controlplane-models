@@ -226,7 +226,7 @@ instead of cloning the protocol repository. The fixture stays under
 `tests_artifacts/` and is omitted from the `spanopticon-models` wheel. CI runs
 the fixture lane.
 
-Release tags, test bundles, and the stable GitHub release are described in
+Release tags and the stable GitHub release are described in
 [Releasing](docs/releasing.md).
 
 ## Release and versioning
@@ -235,8 +235,8 @@ The version declared in this repository is `0.2.0` (`pyproject.toml`).
 Published bytes are GitHub release assets. Tag
 [`v0.24.0`](https://github.com/hyperme-sh/controlplane-models/releases/tag/v0.24.0)
 is the immutable stable release of `spanopticon_models-0.24.0`. Tags named
-`test-<commit>` and prereleases named `0.24.0-test.N` are development
-snapshots. Channel rules, artifact retention, and the accepted-release record
+`test-<commit>` are development snapshots. Automatic package prereleases
+are not published. Channel rules, artifact retention, and the accepted-release record
 are in [Releasing](docs/releasing.md). Compatibility admission for the shared
 line is in [Release compatibility](docs/release-policy.md).
 
