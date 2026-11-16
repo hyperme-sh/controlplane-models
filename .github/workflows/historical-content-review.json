@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "publication_cleared": false,
+  "findings": [
+    {
+      "object": "3bd5630ed020d378c6bde4716d0f82bfe7e00d77",
+      "path": "src/spanopticon_models/payment.py",
+      "blob_sha256": "ceb10c5af865d61b611d46835fbcefaad1704803e6f596164792c9cf11bec841",
+      "content_sha256": "ceb10c5af865d61b611d46835fbcefaad1704803e6f596164792c9cf11bec841",
+      "classification": "retained-payment-schema",
+      "disposition": "retained-not-cleared-for-publication",
+      "reason": "Historical payment DTOs contain provider-specific fields and descriptions. Preserve history without republishing these bytes in the current image."
+    }
+  ]
+}
