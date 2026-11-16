@@ -223,8 +223,10 @@ requires `contractecho_pb2` to import before tests. `--grpc-fixture` uses the
 wheel and checksums recorded in
 [`tests_artifacts/protocol/manifest.json`](tests_artifacts/protocol/manifest.json)
 instead of cloning the protocol repository. The fixture stays under
-`tests_artifacts/` and is omitted from the `spanopticon-models` wheel. CI runs
-the fixture lane.
+`tests_artifacts/` and is omitted from the `spanopticon-models` wheel. CI qualifies the unchanged public protocol revision with `--grpc`, using fresh
+home, cache and project environments without inherited credentials. The fixture
+lane remains available for its recorded contract checks. CI keeps test reports
+within the job rather than uploading Actions artifacts.
 
 Release tags and the stable GitHub release are described in
 [Releasing](docs/releasing.md).

@@ -19,7 +19,7 @@ if (( $# > 1 )); then echo 'Unexpected arguments' >&2; exit 2; fi
 uv sync --frozen "${extras[@]}" "${sync_options[@]}"
 if [[ "${1:-}" == --grpc-fixture ]]; then
   fixture_wheel=$(uv run --no-sync python scripts/verify_protocol_fixture.py "$root")
-  uv pip install --python "$root/.venv/bin/python" --no-deps --reinstall "$fixture_wheel"
+  uv pip install --python "${UV_PROJECT_ENVIRONMENT:-$root/.venv}/bin/python" --no-deps --reinstall "$fixture_wheel"
 fi
 if (( ${#extras[@]} )); then
   # Unlike the base test lane, the integration lane may not skip a missing proto.
