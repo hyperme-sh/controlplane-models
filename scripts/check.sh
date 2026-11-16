@@ -32,6 +32,10 @@ uv run --frozen "${extras[@]}" "${run_options[@]}" pytest -q tests_tools
 uv build --no-sources --out-dir "$check_tmp/dist"
 uv run --frozen "${extras[@]}" "${run_options[@]}" python scripts/verify_wheel.py "$check_tmp/dist"
 uv run --frozen "${extras[@]}" "${run_options[@]}" python scripts/export_release_contract.py "$check_tmp"/dist/*.whl --output "$check_tmp/contract"
+python3 - "$check_tmp"/dist/*.whl <<'PYTHON'
+import hashlib, pathlib, sys
+print('Built wheel SHA256: ' + hashlib.sha256(pathlib.Path(sys.argv[1]).read_bytes()).hexdigest())
+PYTHON
 for qualified_manifest in releases/qualification/current/release.json releases/candidate/release.json; do
 if [[ -f "$qualified_manifest" ]]; then
   uv run --frozen "${extras[@]}" "${run_options[@]}" python scripts/verify_release_candidate.py "$qualified_manifest" "$check_tmp/contract/contract.json" "$check_tmp/contract/evidence.json" controlplane-models

@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "spanopticon-models"
 version = "0.2.0"
 license = "Apache-2.0"
-license-files = ["LICENSE"]
+license-files = ["LICENSE", "NOTICE"]
 requires-python = ">=3.13"
 description = "Shared Pydantic v2 domain contracts (cross-service / events / ACL)"
 dependencies = [
@@ -29,7 +29,7 @@ grpc = [
 packages = ["src/spanopticon_models"]
 
 [tool.hatch.build.targets.sdist]
-include = ["src/spanopticon_models", "LICENSE"]
+include = ["src/spanopticon_models", "LICENSE", "NOTICE"]
 
 [dependency-groups]
 dev = ["pytest>=8.4.0"]
